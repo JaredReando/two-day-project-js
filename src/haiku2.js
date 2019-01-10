@@ -1,36 +1,20 @@
-export class Haiku {
-
-    constructor(lineOne, lineTwo, lineThree) {
+export function Haiku(lineOne, lineTwo, lineThree) {
     this.lineOne = lineOne;
     this.lineTwo = lineTwo;
     this.lineThree = lineThree;
   }
 
-  checkLines() {
+  Haiku.prototype.checkLines = function() {
     let sample = this.lineOne;
     return sample;
   }
-
-  validLength?(haikuArray) {
-    if (haikuArray.length != 3) {
-      return "Haiku length invalid"
-    }
-  }
-
-  newFromString(userString) {
-    let haikuArray = userString.split(/\r?\n/);
-
-  }
-  "first
-  second
-  third"
 
   // newThing() {
   //   let newHaiku = new Haiku("first", "second", "third");
   //   return newHaiku;
   // }
 
-}
+
 
 //
 // export function viable(arrayOfNine) {
