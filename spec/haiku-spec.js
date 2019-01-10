@@ -1,19 +1,19 @@
-import { Haiku } from './haiku';
+import { Haiku } from './../src/haiku';
 
 
-describe('new', function() {
+describe('Haiku', function() {
 
   it("creates a new Haiku object", function() {
-    let newHaiku = new Haiku ("first", "second", "third");
+    let newHaiku = new Haiku("first", "second", "third");
     expect(newHaiku.lineOne).toEqual("first");
   });
 
-  // it("ignores invalid array values during check", function() {
-  //   var sudokuRowFalse = [1,2,,4,5,,7,8,8]
-  //   var sudokuRowTrue = [1,'s',3,4,'^',6,7,8,9]
-  //   expect(viable(sudokuRowFalse)).toEqual(false)
-  //   expect(viable(sudokuRowTrue)).toEqual(true)
-  // });
+  it("converts a string into an array from line breaks", function() {
+    let newHaiku = new Haiku("first", "second", "third");
+    let inputString = "this\nis\nstring";
+    expect(newHaiku.newFromString(inputString)).toEqual(["this", "is", "string"]);
+  });
+
 
 });
 

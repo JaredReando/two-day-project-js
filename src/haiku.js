@@ -1,6 +1,6 @@
 export class Haiku {
 
-    constructor(lineOne, lineTwo, lineThree) {
+  constructor(lineOne, lineTwo, lineThree) {
     this.lineOne = lineOne;
     this.lineTwo = lineTwo;
     this.lineThree = lineThree;
@@ -11,7 +11,7 @@ export class Haiku {
     return sample;
   }
 
-  validLength?(haikuArray) {
+  checkLength(haikuArray) {
     if (haikuArray.length != 3) {
       return "Haiku length invalid"
     }
@@ -19,16 +19,9 @@ export class Haiku {
 
   newFromString(userString) {
     let haikuArray = userString.split(/\r?\n/);
-
+    console.log(haikuArray);
+    return haikuArray;
   }
-  "first
-  second
-  third"
-
-  // newThing() {
-  //   let newHaiku = new Haiku("first", "second", "third");
-  //   return newHaiku;
-  // }
 
 }
 
