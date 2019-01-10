@@ -23,7 +23,34 @@ export class Haiku {
     return haikuArray;
   }
 
+  vowelCount(string, returnType) {
+    const vowels = ['a','e','i','o','u','y'];
+    const consonants = ['b','c','d','f','g','h','j','k','l','m','n','p','q','r','s','t','v','w','x','z'];
+    const dipthongs = ['oi', 'oy', 'ou', 'ow', 'au', 'aw', 'oo'];
+
+    let counterVowels = 0;
+    let counterConsonants = 0;
+
+    string.split('').forEach(function(char) {
+      if (vowels.includes(char)) {
+        counterVowels += 1;
+      } else if (consonants.includes(char)) {
+        counterConsonants += 1;
+      }
+    })
+    let charTypes = [counterVowels, counterConsonants];
+
+    if (returnType.toLowerCase() == 'v') {
+      return charTypes[0];
+    } else if (returnType.toLowerCase() == 'c') {
+      return charTypes[1];
+    }
+    return "Invalid returnType. Must use 'v/c' second argurment in function call."
+  }
+
 }
+
+
 
 //
 // export function viable(arrayOfNine) {
