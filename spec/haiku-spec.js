@@ -18,9 +18,20 @@ describe('Haiku', function() {
   });
 
   it("counts the number of vowels in a given string", function() {
-    expect(newHaiku.vowelCount(this.lineOne)).toEqual(1)
-  }
+    expect(newHaiku.vowelCount(newHaiku.lineOne, 'v')).toEqual(1);
+  });
 
+  it("counts the number of consonants in a given string", function() {
+    expect(newHaiku.vowelCount(newHaiku.lineOne, 'c')).toEqual(4);
+  });
+
+  it("counts the number of vowel pairs in a given string", function() {
+    expect(newHaiku.vowelFriendsCount('cheese')).toEqual(1);
+  });
+
+  it("subtracts the number of multi-vowel occurrences from total vowel count.", function() {
+    expect(newHaiku.syllableCount("scooter")).toEqual(2);
+  });
 
 });
 

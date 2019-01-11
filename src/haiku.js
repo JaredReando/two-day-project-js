@@ -1,14 +1,10 @@
 export class Haiku {
 
-  constructor(lineOne, lineTwo, lineThree) {
-    this.lineOne = lineOne;
-    this.lineTwo = lineTwo;
-    this.lineThree = lineThree;
-  }
-
-  checkLines() {
-    let sample = this.lineOne;
-    return sample;
+  constructor(string) {
+    let lines = this.newFromString(string)
+    this.lineOne = lines[0];
+    this.lineTwo = lines[1];
+    this.lineThree = [2];
   }
 
   checkLength(haikuArray) {
@@ -23,21 +19,42 @@ export class Haiku {
     return haikuArray;
   }
 
+  vowelFriendsCount(string) {
+    const vowels = /[aeiouy]{2,}/ig;
+
+    let vowelFriends = string.match(vowels).length
+
+    return vowelFriends;
+
+  }
+
+  vowelCabooseCheck(string) {
+    if (string.match(/[aeiou]$/i).length != null) {
+      return 1;
+    }
+
+  }
+
+  syllableCount(string) {
+    debugger;
+    let vowelCount = this.vowelCount(string,'v');
+    let vowelFriendsCount = this.vowelFriendsCount(string);
+    let syllables = vowelCount - vowelFriendsCount;
+
+    return syllables;
+
+  }
+
+
+
   vowelCount(string, returnType) {
-    const vowels = ['a','e','i','o','u','y'];
-    const consonants = ['b','c','d','f','g','h','j','k','l','m','n','p','q','r','s','t','v','w','x','z'];
+    const vowels = /[aeiouy]/ig;
+    const consonants = /[bcdfghjklmnpqrstvwxz]/ig;
     const dipthongs = ['oi', 'oy', 'ou', 'ow', 'au', 'aw', 'oo'];
 
-    let counterVowels = 0;
-    let counterConsonants = 0;
+    let counterVowels = string.match(vowels).length;
+    let counterConsonants = string.match(consonants).length;
 
-    string.split('').forEach(function(char) {
-      if (vowels.includes(char)) {
-        counterVowels += 1;
-      } else if (consonants.includes(char)) {
-        counterConsonants += 1;
-      }
-    })
     let charTypes = [counterVowels, counterConsonants];
 
     if (returnType.toLowerCase() == 'v') {
@@ -49,73 +66,3 @@ export class Haiku {
   }
 
 }
-
-
-
-//
-// export function viable(arrayOfNine) {
-//   const cleanedArray = arrayOfNine.filter(input => ((typeof(input)=='number' && input>0 && !input.isNaN) || (typeof(input)=='string' && input.length>0)));
-//   const inputLength = arrayOfNine.length;
-//   const checkLength = [...new Set(cleanedArray)].length;
-//   if (inputLength == checkLength) {
-//     return true;
-//   } else {
-//     return false;
-//   }
-// }
-//
-// export function checkAllRows(sudokuBoard) {
-//   var valid = true;
-//   sudokuBoard.forEach(function(row) {
-//     if(!viable(row)) {
-//       valid = false;
-//     }
-//   });
-//   return valid;
-// }
-//
-// export function checkAllColumns(sudokuBoard) {
-//   // sudokuBoard.forEach(function(rowArray) {
-//   // go through master array and build arrays representing columns
-//   var singleCheck = true;
-//   for (var columnIndex = 0; columnIndex < sudokuBoard[0].length; columnIndex++) {
-//     var column = [];
-//     var viability = true;
-//     for (var rowIndex = 0; rowIndex < sudokuBoard.length; rowIndex++){// for each row, push the number in the given column
-//       column.push(sudokuBoard[rowIndex][columnIndex]);
-//     }
-//     singleCheck = viable(column);
-//     if(!singleCheck){
-//       viability = false;
-//     }
-//   }
-//   return viability;
-//
-// }
-//
-// export function checkAllBoxes(sudokuBoard) {
-//   var valid = true;
-//   var singleCheck = true;
-//
-//   for (var chunkRow = 0; chunkRow < 9; chunkRow+=3 ) {
-//     var crate = [];
-//     for (var chunkColumn = 0; chunkColumn < 9; chunkColumn+=3) {
-//       var box = []
-//       var chunkSlice = sudokuBoard[chunkRow].slice(chunkColumn,chunkColumn+3);
-//       box = box.concat(chunkSlice);
-//       chunkSlice = sudokuBoard[chunkRow+1].slice(chunkColumn,chunkColumn+3);
-//       box = box.concat(chunkSlice);
-//       chunkSlice = sudokuBoard[chunkRow+2].slice(chunkColumn,chunkColumn+3);
-//       box = box.concat(chunkSlice);
-//       crate.push(box);
-//     }
-//     crate.forEach(function(box) {
-//       singleCheck = viable(box);
-//       if(!singleCheck){
-//         valid = false;
-//       }
-//     });
-//   }
-//
-//   return valid;
-// }
